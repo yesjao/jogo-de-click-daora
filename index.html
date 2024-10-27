@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5dc;
+        }
+        #cookie {
+            width: 200px;
+            height: 200px;
+            background-image: url('https://example.com/cookie-marrom.png'); /* Substitua pelo link da imagem do cookie marrom */
+            background-size: cover;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        #upgrades {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cookie Clicker</h1>
+    <div id="cookie"></div>
+    <h2 id="cookieCount">Cookies: 0</h2>
+    <h2 id="cookiesPerSecond">Cookies por segundo: 0</h2>
+    <h2 id="cookiesPerClick">Cookies por clique: 1</h2>
+    
+    <div id="upgrades">
+        <button onclick="buyClickUpgrade()">Comprar Upgrade de Clique (50 Cookies)</button>
+    </div>
+
+    <script>
+        let cookieCount = 0;
+        let cookiesPerSecond = 0;
+        let cookiesPerClick = 1;
+
+        function updateDisplay() {
+            document.getElementById('cookieCount').innerText = 'Cookies: ' + cookieCount;
+            document.getElementById('cookiesPerSecond').innerText = 'Cookies por segundo: ' + cookiesPerSecond;
+            document.getElementById('cookiesPerClick').innerText = 'Cookies por clique: ' + cookiesPerClick;
+        }
+
+        document.getElementById('cookie').onclick = function() {
+            cookieCount += cookiesPerClick;
+            updateDisplay();
+        };
+
+        function buyClickUpgrade() {
+            if (cookieCount >= 50) {
+                cookieCount -= 50;
+                cookiesPerClick++; // Aumenta a produção de cookies por clique
+                updateDisplay();
+            } else {
+                alert('Você não tem cookies suficientes!');
+            }
+        }
+
+        setInterval(function() {
+            cookieCount += cookiesPerSecond;
+            updateDisplay();
+        }, 1000);
+    </script>
+</body>
+</html>
